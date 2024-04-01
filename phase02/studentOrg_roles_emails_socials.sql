@@ -7,7 +7,7 @@
 -- Stores information about a student organization
 CREATE TABLE IF NOT EXISTS StudentOrg
 (
-    orgID INT PRIMARY KEY,
+    orgID INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30),
     establishedAt DATETIME,
     orgType VARCHAR(30)
@@ -62,11 +62,11 @@ CREATE TABLE IF NOT EXISTS SocialsInfo
 -- SAMPLE DATA
 --
 -- ==================================
-INSERT INTO StudentOrg (orgID, name, establishedAt, orgType) VALUES
-(1, 'Soccer', '2010-09-01 00:00:00', 'Club Sports'),
-(2, 'Roller Hockey', '2012-05-15 00:00:00', 'Club Sports'),
-(3, 'Delta Tau Delta', '2011-08-20 00:00:00', 'Greek Life'),
-(4, 'Delta Zeta', '2013-03-05 00:00:00', 'Greek Life');
+INSERT INTO StudentOrg (name, establishedAt, orgType) VALUES
+('Soccer', '2010-09-01 00:00:00', 'Club Sports'),
+('Roller Hockey', '2012-05-15 00:00:00', 'Club Sports'),
+('Delta Tau Delta', '2011-08-20 00:00:00', 'Greek Life'),
+('Delta Zeta', '2013-03-05 00:00:00', 'Greek Life');
 
 INSERT INTO Roles (userID, orgID, positionName, year, semester) VALUES
 (1, 1, 'President', 2022, 'Fall'),
