@@ -161,46 +161,54 @@ CREATE TABLE IF NOT EXISTS Games
 
 CREATE TABLE IF NOT EXISTS Workshops
 (
+    workshopID INT,
     eventID          INT,
     speakerEmail     TEXT,
     speakerFirstName TEXT,
     speakerLastName  TEXT,
     topic            TEXT,
     collabOrgId      INT,
+    PRIMARY KEY (workshopID, eventID),
     FOREIGN KEY (eventID) REFERENCES Events (eventID) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (collabOrgId) REFERENCES StudentOrgs (orgID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Meetings
 (
-    meetingID   INT AUTO_INCREMENT PRIMARY KEY,
+    eventID          INT,
+    meetingID   INT AUTO_INCREMENT,
     agenda      TEXT NOT NULL,
     minutes     TEXT NOT NULL,
-    meetingDate DATE NOT NULL,
-    startTime   TIME NOT NULL,
-    endTime     TIME NOT NULL
+    PRIMARY KEY (eventID, meetingID),
+    FOREIGN KEY (eventID) REFERENCES Events (eventID) ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
 CREATE TABLE IF NOT EXISTS CommunityServices
 (
-    serviceID          INT AUTO_INCREMENT PRIMARY KEY,
+    eventID          INT,
+    serviceID          INT AUTO_INCREMENT,
     hours              INT  NOT NULL,
     serviceDescription TEXT NOT NULL,
-    serviceDate        DATE NOT NULL
+    PRIMARY KEY (eventID, serviceID),
+    FOREIGN KEY (eventID) REFERENCES Events (eventID) ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
 CREATE TABLE IF NOT EXISTS Philanthropies
 (
-    philanthropyID INT AUTO_INCREMENT PRIMARY KEY,
+    eventID          INT,
+    philanthropyID INT AUTO_INCREMENT,
     cause          VARCHAR(255)   NOT NULL,
     amountRaised   DECIMAL(10, 2) NOT NULL,
-    eventDate      DATE           NOT NULL
+    PRIMARY KEY (eventID, philanthropyID),
+    FOREIGN KEY (eventID) REFERENCES Events (eventID) ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
 CREATE TABLE IF NOT EXISTS Rituals
 (
-    ritualID          INT AUTO_INCREMENT PRIMARY KEY,
+    eventID          INT,
+    ritualID          INT AUTO_INCREMENT,
     ritualName        VARCHAR(255) NOT NULL,
     ritualDescription TEXT         NOT NULL,
-    ritualDate        DATE         NOT NULL
+    PRIMARY KEY (eventID, ritualID),
+    FOREIGN KEY (eventID) REFERENCES Events (eventID) ON UPDATE CASCADE ON DELETE CASCADE,
 );
