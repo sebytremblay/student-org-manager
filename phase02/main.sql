@@ -70,11 +70,13 @@ CREATE TABLE IF NOT EXISTS Dues
 CREATE TABLE IF NOT EXISTS Events
 (
     eventID     INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    orgID       INT          NOT NULL,
     name        VARCHAR(100) NOT NULL,
     startTime   TIMESTAMP    NOT NULL,
     endTime     TIMESTAMP    NOT NULL,
     location    TEXT,
     isMandatory boolean DEFAULT FALSE
+    FOREIGN KEY (orgID) REFERENCES StudentOrgs (orgID) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
 -- Bridge table between Event and User storing information about which users are attending which events
