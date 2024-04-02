@@ -13,7 +13,7 @@ GROUP BY Name
 HAVING MemberCount < (40);
 
 # Interested in sports club meeting not frequently
--- 3.1: Sports club meeting frequency
+
 
 SELECT Name, MeetingFrequency
 FROM StudentOrganization
