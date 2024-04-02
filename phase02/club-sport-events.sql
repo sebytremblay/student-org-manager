@@ -5,7 +5,7 @@
 -- ==================================
 
 -- Stores information about drills to be used in practice events
-CREATE TABLE Drill (
+CREATE TABLE IF NOT EXISTS Drill (
     drillID int NOT NULL AUTO_INCREMENT,
     name varchar(100),
     drillDescription varchar(250),
@@ -13,7 +13,7 @@ CREATE TABLE Drill (
 );
 
 -- Stores information about each practice event
-CREATE TABLE Practice (
+CREATE TABLE IF NOT EXISTS Practice (
     eventID int,
     practiceID int NOT NULL AUTO_INCREMENT,
     team varchar(20) NOT NULL,
@@ -21,18 +21,24 @@ CREATE TABLE Practice (
     PRIMARY KEY(eventID, practiceID),
     FOREIGN KEY (eventID)
         REFERENCES Event (eventID)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 );
 
 -- Bridge table between practices and drills storing information about which drills were used in which practices
 -- Used to create practice plan for each practice
-CREATE TABLE DrillInstance (
+CREATE TABLE IF NOT EXISTS DrillInstance (
     practiceID int NOT NULL,
     drillID int NOT NULL,
     PRIMARY KEY(practiceID, drillID),
     FOREIGN KEY (practiceID)
         REFERENCES Practice (practiceID),
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
     FOREIGN KEY (drillID)
         REFERENCES Drill (drillID)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
 );
 
 -- ==================================
