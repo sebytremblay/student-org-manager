@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS Drill (
 CREATE TABLE IF NOT EXISTS Practice (
     eventID int,
     practiceID int NOT NULL AUTO_INCREMENT,
-    team varchar(20) NOT NULL,
     injuriesDesc varchar(250),
     PRIMARY KEY(eventID, practiceID),
     FOREIGN KEY (eventID)
@@ -53,10 +52,10 @@ INSERT INTO Drill (drillID, name, description) VALUES
 (3, "PowerPlay/PenaltyKill", "four offensive players, three defensive players." + " work a diamond and rotate into a box for PP," + "work a triangle for PK"),
 (4, "Scrimmage", "four versus four");
 
-INSERT INTO practice (eventID, practiceID, team, injuriesDesc) VALUES
-(?, 1, "All", "none"),
-(?, 2, "D2", "none"),
-(?, 3, "D4", "puck to chest, knocked wind out of player");
+INSERT INTO practice (eventID, practiceID, injuriesDesc) VALUES
+(?, 1, "none"),
+(?, 2, "none"),
+(?, 3, "puck to chest, knocked wind out of player");
 
 INSERT INTO DrillInstance (practiceID, drillID) VALUES
 (1, 1),
