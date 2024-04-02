@@ -66,3 +66,4 @@ INSERT INTO DrillInstance (practiceID, drillID) VALUES
 (2, 3),
 (2, 4),
 (3, 4);
+
