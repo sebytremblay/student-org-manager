@@ -173,34 +173,34 @@ CREATE TABLE IF NOT EXISTS Workshops
 
 CREATE TABLE IF NOT EXISTS Meetings
 (
-    MeetingID   INT AUTO_INCREMENT PRIMARY KEY,
-    Agenda      TEXT NOT NULL,
-    Minutes     TEXT NOT NULL,
-    MeetingDate DATE NOT NULL,
-    StartTime   TIME NOT NULL,
-    EndTime     TIME NOT NULL
+    meetingID   INT AUTO_INCREMENT PRIMARY KEY,
+    agenda      TEXT NOT NULL,
+    minutes     TEXT NOT NULL,
+    meetingDate DATE NOT NULL,
+    startTime   TIME NOT NULL,
+    endTime     TIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS CommunityServices
 (
-    ServiceID          INT AUTO_INCREMENT PRIMARY KEY,
-    Hours              INT  NOT NULL,
-    ServiceDescription TEXT NOT NULL,
-    ServiceDate        DATE NOT NULL
+    serviceID          INT AUTO_INCREMENT PRIMARY KEY,
+    hours              INT  NOT NULL,
+    serviceDescription TEXT NOT NULL,
+    serviceDate        DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Philanthropies
 (
-    PhilanthropyID INT AUTO_INCREMENT PRIMARY KEY,
-    Cause          VARCHAR(255)   NOT NULL,
-    AmountRaised   DECIMAL(10, 2) NOT NULL,
-    EventDate      DATE           NOT NULL
+    philanthropyID INT AUTO_INCREMENT PRIMARY KEY,
+    cause          VARCHAR(255)   NOT NULL,
+    amountRaised   DECIMAL(10, 2) NOT NULL,
+    eventDate      DATE           NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Rituals
 (
-    RitualID          INT AUTO_INCREMENT PRIMARY KEY,
-    RitualName        VARCHAR(255) NOT NULL,
-    RitualDescription TEXT         NOT NULL,
-    RitualDate        DATE         NOT NULL
+    ritualID          INT AUTO_INCREMENT PRIMARY KEY,
+    ritualName        VARCHAR(255) NOT NULL,
+    ritualDescription TEXT         NOT NULL,
+    ritualDate        DATE         NOT NULL
 );
