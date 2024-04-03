@@ -214,7 +214,7 @@ CREATE TABLE IF NOT EXISTS Meetings
     eventID   INT,
     meetingID INT,
     agenda    TEXT NOT NULL,
-    minutes   TEXT NOT NULL,
+    duration   TEXT NOT NULL,
     PRIMARY KEY (eventID, meetingID),
     FOREIGN KEY (eventID)
         REFERENCES Events (eventID)

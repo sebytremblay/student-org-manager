@@ -38,9 +38,9 @@ INSERT INTO Dues (userID, orgID, dueID, amount, dueDate) VALUES
 
 -- Inserting sample roles
 INSERT INTO Roles (userID, orgID, positionName, school_year, semester) VALUES
-(1, 1, 'President', 2023, 'Fall'),
+(1, 1, 'President', 2023, 'Spring'),
 (2, 2, 'Vice President', 2023, 'Fall'),
-(3, 3, 'Secretary', 2023, 'Fall');
+(3, 3, 'Secretary', 2021, 'Fall');
 
 -- Inserting sample drills for practices
 INSERT INTO Drills (drillID, name, drillDescription)
@@ -56,7 +56,7 @@ VALUES (1, 'Butterfly',
 INSERT INTO Events (eventID, orgID, name, startTime, endTime, location, isMandatory)
 VALUES 
 (1, 1, 'Soccer Practice 1', '2024-04-05 15:00:00', '2024-04-05 17:00:00', 'Campus Field', FALSE),
-(2, 2, 'Roller Hockey Practice 1', '2024-04-06 18:00:00', '2024-04-06 20:00:00', 'Campus Rink', FALSE);
+(2, 2, 'Roller Hockey Practice 1', '2024-04-06 18:00:00', '2024-04-06 20:00:00', 'Campus Rink', TRUE);
 INSERT INTO Practices (eventID, practiceID, injuriesDesc)
 VALUES 
 (1, 1, 'Minor ankle sprain during drill.'),
@@ -78,10 +78,10 @@ INSERT INTO Events (eventID, orgID, name, startTime, endTime, location, isMandat
 VALUES 
 (3, 1, 'Soccer Game vs University A', '2024-05-10 15:00:00', '2024-05-10 17:00:00', 'University A Field', TRUE),
 (4, 2, 'Roller Hockey Game vs College B', '2024-05-11 18:00:00', '2024-05-11 20:00:00', 'College B Rink', TRUE);
-INSERT INTO Games (gameID, eventID, opponentTeamName, nuScore, opponentScore, injuriesDescription)
+INSERT INTO Games (gameID, eventID, opponentTeamName, injuriesDescription)
 VALUES 
-(1, 3, 'University A', 3, 2, 'None reported.'),
-(2, 4, 'College B', 5, 3, 'One player had a mild concussion.');
+(1, 3, 'University A', 'None reported.'),
+(2, 4, 'College B', 'One player had a mild concussion.');
 
 -- Inserting workshop events for Delta Tau Delta and Delta Zeta
 INSERT INTO Events (eventID, orgID, name, startTime, endTime, location, isMandatory)
@@ -106,18 +106,18 @@ VALUES
 -- Inserting community service events for Delta Tau Delta and Delta Zeta
 INSERT INTO Events (eventID, orgID, name, startTime, endTime, location, isMandatory)
 VALUES 
-(9, 3, 'Beach Cleanup Initiative', '2024-08-25 08:00:00', '2024-08-25 12:00:00', 'Local Beach', FALSE),
-(10, 4, 'Park Renovation Project', '2024-08-26 09:00:00', '2024-08-26 13:00:00', 'City Park', FALSE);
+(9, 3, 'Beach Cleanup Initiative', '2022-08-25 08:00:00', '2022-08-25 12:00:00', 'Local Beach', FALSE),
+(10, 4, 'Park Renovation Project', '2022-08-26 09:00:00', '2022-08-26 13:00:00', 'City Park', FALSE);
 INSERT INTO CommunityServices (eventID, serviceID, hours, serviceDescription)
-VALUES 
+VALUES
 (9, 1, 4, 'Beach cleanup to remove trash and promote environmental awareness'),
 (10, 2, 4, 'Participate in park renovation efforts, including planting trees and painting.');
 
 -- Inserting philanthropy events for Delta Tau Delta and Delta Zeta
 INSERT INTO Events (eventID, orgID, name, startTime, endTime, location, isMandatory)
 VALUES 
-(11, 3, 'Annual Fundraiser Gala', '2024-09-30 19:00:00', '2024-09-30 23:00:00', 'Grand Hotel Ballroom', TRUE),
-(12, 4, 'Charity Run for Education', '2024-10-01 07:00:00', '2024-10-01 11:00:00', 'Community Park', TRUE);
+(11, 3, 'Annual Fundraiser Gala', '2021-09-30 19:00:00', '2021-09-30 23:00:00', 'Grand Hotel Ballroom', TRUE),
+(12, 4, 'Charity Run for Education', '2022-10-01 07:00:00', '2022-10-01 11:00:00', 'Community Park', TRUE);
 INSERT INTO Philanthropies (eventID, philanthropyID, cause, amountRaised)
 VALUES 
 (11, 1, 'Scholarship Fund for Underprivileged Students', 5000.00),
