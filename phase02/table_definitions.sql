@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS Dues
     orgID   INT,
     dueID   INT,
     amount  DECIMAL(10, 2),
+    beenPaid BOOLEAN DEFAULT FALSE,
     dueDate DATE,
     PRIMARY KEY (userID, orgID, dueID),
     FOREIGN KEY (userID)

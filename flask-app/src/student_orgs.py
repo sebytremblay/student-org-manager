@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from src import db
-import route_util as ru
+from src import route_util as ru
 
 orgs = Blueprint('orgs', __name__)
 
@@ -161,8 +161,7 @@ def create_event():
 
     # Insert into event type table
     cursor = db.get_db().cursor()
-    query = f"INSERT INTO {event_data['eventType']} (eventID, {fields}) VALUES (%s, {
-        placeholders})"
+    query = f"INSERT INTO {event_data['eventType']} (eventID, {fields}) VALUES (%s, {placeholders})"
     cursor.execute(query, values)
 
     db.get_db().commit()
@@ -204,8 +203,7 @@ def update_event(event_id):
 
     # Update event type table
     cursor = db.get_db().cursor()
-    query = f"UPDATE {event_data['eventType']} SET {
-        fields_set} WHERE eventID = %s"
+    query = f"UPDATE {event_data['eventType']} SET {fields_set} WHERE eventID = %s"
     cursor.execute(query, values)
 
     db.get_db().commit()
