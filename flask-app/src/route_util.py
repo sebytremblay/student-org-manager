@@ -37,13 +37,12 @@ def validate_event_type(event_type):
     return jsonify({"message": "Event type is valid"}), 200
 
 # Helper function to insert/update event type details
-def validate_event_type_details(event_id, event_data, event_type_fields):
+def validate_event_type_details(event_data, event_type_fields):
     """Validate event type details for insertion/updating
 
     Args:
-        event_id (_type_): _description_
-        event_data (_type_): _description_
-        event_type_fields (_type_): _description_
+        event_data (dict): The event data to validate.
+        event_type_fields (dict): The fields required for each event type.
 
     Returns:
         _type_: _description_
