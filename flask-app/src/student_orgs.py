@@ -148,8 +148,7 @@ def create_event():
     event_id = cursor.lastrowid
 
     # Validate event type and insert event type details
-    is_valid = ru.validate_event_type_details(
-        event_id, event_data, event_type_fields)
+    is_valid = ru.validate_event_type_details(event_data, event_type_fields)
     if not is_valid[0]:
         return jsonify({"message": is_valid[1]}), 400
 
@@ -190,8 +189,7 @@ def update_event(event_id):
     cursor.execute(event_query, event_values)
 
     # Validate event type and update event type details
-    is_valid = ru.validate_event_type_details(
-        event_id, event_data, event_type_fields)
+    is_valid = ru.validate_event_type_details(event_data, event_type_fields)
     if not is_valid[0]:
         return jsonify({"message": is_valid[1]}), 400
 
