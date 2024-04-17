@@ -54,6 +54,17 @@ def delete_org(org_id):
     db.get_db().commit()
     return jsonify({"message": "Organization deleted successfully"}), 200
 
+# Get all StudentOrgs
+@orgs.route('/orgs', methods=['GET'])
+def get_orgs():
+    cursor = db.get_db().cursor()
+    query = 'SELECT * FROM StudentOrgs'
+    cursor.execute(query)
+    orgs = cursor.fetchall()
+    if not orgs:
+        return jsonify({"message": "No organizations found"}), 404
+    return jsonify(orgs), 200
+
 # Get StudentOrg
 @orgs.route('/orgs/<int:org_id>', methods=['GET'])
 def get_org(org_id):
