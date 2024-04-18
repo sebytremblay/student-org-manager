@@ -133,7 +133,7 @@ def get_outstanding_dues(org_id):
     SELECT Dues.dueDate, Dues.userID, SUM(Dues.amount) AS totalDue
     FROM Dues
     WHERE orgID = %s AND beenPaid IS FALSE
-    GROUP BY Dues.userID
+    GROUP BY Dues.userID, Dues.dueDate
     '''
     cursor.execute(query, (org_id,))
     dues = cursor.fetchall()
