@@ -82,8 +82,11 @@ def get_org(org_id):
 def get_executive_board(org_id):
     cursor = db.get_db().cursor()
     query = '''
-    SELECT userID, positionName FROM Roles
-    WHERE orgID = %s AND positionName NOT LIKE '%%member%%'
+    SELECT u.firstName, u.lastName, r.positionName 
+    FROM Roles r
+    JOIN Users u ON r.userID = u.userID
+    WHERE orgID = %s 
+        AND r.positionName NOT LIKE '%%member%%'
     '''
     cursor.execute(query, (org_id,))
     board_members = cursor.fetchall()
@@ -141,6 +144,11 @@ def get_outstanding_dues(org_id):
 def create_event():
     event_data = request.json
     cursor = db.get_db().cursor()
+    
+    # Validate event type and insert event type details
+    is_valid = ru.validate_event_type_details(event_data, event_type_fields)
+    if not is_valid[0]:
+        return jsonify({"message": is_valid[1]}), 400
 
     # Insert into Events table
     event_query = '''
@@ -157,11 +165,6 @@ def create_event():
     )
     cursor.execute(event_query, event_values)
     event_id = cursor.lastrowid
-
-    # Validate event type and insert event type details
-    is_valid = ru.validate_event_type_details(event_data, event_type_fields)
-    if not is_valid[0]:
-        return jsonify({"message": is_valid[1]}), 400
 
     # Prepare event type details
     required_fields = event_type_fields[event_data['eventType']]
