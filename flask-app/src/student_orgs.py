@@ -130,14 +130,46 @@ def get_upcoming_events_by_type(org_id, event_type):
 def get_outstanding_dues(org_id):
     cursor = db.get_db().cursor()
     query = '''
-    SELECT Dues.dueDate, Dues.userID, SUM(Dues.amount) AS totalDue
+    SELECT Dues.dueDate, Users.firstName, Users.lastName, SUM(Dues.amount) AS totalDue
     FROM Dues
+    JOIN Users ON Dues.userID = Users.userID
     WHERE orgID = %s AND beenPaid IS FALSE
-    GROUP BY Dues.userID
+    GROUP BY Dues.userID, Dues.dueDate
     '''
     cursor.execute(query, (org_id,))
     dues = cursor.fetchall()
     return jsonify(dues), 200
+
+# Gettting the alumni from an organization
+@orgs.route('/orgs/<int:org_id>/alumni', methods=['GET'])
+def get_org_alumni(org_id):
+    cursor = db.get_db().cursor()
+    query = '''
+    SELECT u.firstName, u.lastName, u.graduationYear, a.currentJob
+    FROM StudentOrgs s
+    JOIN Roles r ON s.orgID = r.orgID
+    JOIN Users u ON r.userID = u.userID
+    JOIN Alumni a ON u.userID = a.userID
+    WHERE s.orgID = %s
+    '''
+    cursor.execute(query, (org_id,))
+    alumni = cursor.fetchall()
+    return jsonify(alumni), 200
+
+# Gettting the current members from an organization
+@orgs.route('/orgs/<int:org_id>/members', methods=['GET'])
+def get_org_members(org_id):
+    cursor = db.get_db().cursor()
+    query = '''
+    SELECT u.firstName, u.lastName, u.currentYear, r.positionName
+    FROM StudentOrgs s
+    JOIN Roles r ON s.orgID = r.orgID
+    JOIN Users u ON r.userID = u.userID
+    WHERE s.orgID = %s
+    '''
+    cursor.execute(query, (org_id,))
+    members = cursor.fetchall()
+    return jsonify(members), 200
 
 # Create an event
 @orgs.route('/events', methods=['POST'])
