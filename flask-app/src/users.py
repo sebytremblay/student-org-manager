@@ -109,7 +109,7 @@ def get_user_schedule(userID):
     return jsonify(events_list)
 
 # Add user to student organization
-@users.route('/users/<userID>/orgs/<orgID>', methods=['POST'])
+@users.route('/users/<userID>/orgs/<orgID>', methods=['PUT'])
 def add_user_to_org(userID, orgID):
     cursor = db.get_db().cursor()
     query = 'INSERT INTO Roles (userID, orgID) VALUES (%s, %s)'
@@ -117,3 +117,11 @@ def add_user_to_org(userID, orgID):
     cursor.execute(query, data)
     db.get_db().commit()
     return 'User added to organization successfully'
+
+# Remove user from student organization
+@users.route('/users/<userID>/orgs/<orgID>', methods=['DELETE'])
+def remove_user_from_org(userID, orgID):
+    cursor = db.get_db().cursor()
+    cursor.execute('DELETE FROM Roles WHERE userID = %s AND orgID = %s', (userID, orgID))
+    db.get_db().commit()
+    return 'User removed from organization successfully'
