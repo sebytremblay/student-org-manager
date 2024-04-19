@@ -161,7 +161,7 @@ def get_org_alumni(org_id):
 def get_org_members(org_id):
     cursor = db.get_db().cursor()
     query = '''
-    SELECT u.firstName, u.lastName, u.currentYear, r.positionName
+    SELECT u.firstName, u.lastName, u.currentYear, r.positionName, u.userID
     FROM StudentOrgs s
     JOIN Roles r ON s.orgID = r.orgID
     JOIN Users u ON r.userID = u.userID
